@@ -1,5 +1,6 @@
 package com.example.lms.controller;
 
+import com.example.lms.exceptions.LibExceptions;
 import com.example.lms.function.SubString;
 import com.example.lms.model.Book;
 import com.example.lms.model.IssuedBook;
@@ -28,7 +29,7 @@ public class HomeController {
     public String addBook( ){
         return "addBook";
     }
-    @RequestMapping("setBook")
+    @PostMapping("setBook")
     public String setBook(Book book){
         bookRepository.save(book);
         return "addBook";
@@ -38,7 +39,7 @@ public class HomeController {
     @RequestMapping("issueBook")
     public String issueBook(@RequestParam int id, Model model){
 
-        Book book = (Book) bookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("book not found"));
+        Book book =  bookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("book not found"));
 
         IssuedBook issuedBook = new IssuedBook(book.getId(), book.getName(), book.getAuthor());
         issuedBookRepository.save(issuedBook);
@@ -52,9 +53,9 @@ public class HomeController {
 
 
     @RequestMapping("returnBook")
-    public String reuturnBook( int id){
+    public String reuturnBook( int id) throws LibExceptions {
 
-        IssuedBook issuedBook = (IssuedBook) issuedBookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("book not found"));
+        IssuedBook issuedBook =  issuedBookRepository.findById(id).orElseThrow(()-> new LibExceptions("book not found"));
         Book book = new Book(issuedBook.getId(), issuedBook.getIbname(), issuedBook.getIbauthor());
         bookRepository.save(book);
         issuedBookRepository.delete(issuedBook);
@@ -65,14 +66,14 @@ public class HomeController {
 
 
     @GetMapping("availableBookInLibrary")
-    public String avlblBook(Book book, Model model){
+    public String avlblBook( Model model){
         List<Book> list = bookRepository.findAll();
         model.addAttribute("list", list);
         return "availableBookInLibrary";
     }
 
     @GetMapping("viewIssuedBook")
-    public String  geteEmps(IssuedBook issuedBook, Model model) {
+    public String  getBooks( Model model) {
         List<IssuedBook> list= issuedBookRepository.findAll();
         model.addAttribute("list", list);
         return "viewIssuedBook";
@@ -88,8 +89,8 @@ public class HomeController {
 
 
     @RequestMapping("deleteBook")
-    public String delBook(@RequestParam int id){
-        Book book = (Book) bookRepository.findById(id).orElseThrow(() -> new IllegalStateException("not found"));
+    public String delBook(@RequestParam int id) throws LibExceptions {
+        bookRepository.findById(id).orElseThrow(() -> new LibExceptions("not found"));
         bookRepository.deleteById(id);
         return "home";
     }
@@ -97,7 +98,7 @@ public class HomeController {
     SubString subString;
 
     @RequestMapping("search")
-    public String serch(String name,Book book, Model model){
+    public String search(String name, Model model){
 
         List<Book> bookList = bookRepository.findAll();
         List<Book> ans = new ArrayList<>();
