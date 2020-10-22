@@ -37,9 +37,9 @@ public class HomeController {
 
 
     @RequestMapping("issueBook")
-    public String issueBook(@RequestParam int id, Model model){
+    public String issueBook(@RequestParam int id, Model model) throws LibExceptions {
 
-        Book book =  bookRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("book not found"));
+        Book book =  bookRepository.findById(id).orElseThrow(()-> new LibExceptions("book not found"));
 
         IssuedBook issuedBook = new IssuedBook(book.getId(), book.getName(), book.getAuthor());
         issuedBookRepository.save(issuedBook);
