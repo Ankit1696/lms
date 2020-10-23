@@ -105,7 +105,7 @@ public class HomeController {
 
         for(int i=0;i<bookList.size();i++){
             if(subString.isSubstring(name.toLowerCase(),bookList.get(i).getName().toLowerCase() )
-                     || bookList.get(i).getAuthor().equalsIgnoreCase(name)){
+                     || bookList.get(i).getAuthor().equalsIgnoreCase(name)||(bookList.get(i).getId()+"").equalsIgnoreCase(name)){
                 Book book1 = new Book(bookList.get(i).getId(), bookList.get(i).getName(), bookList.get(i).getAuthor());
                 ans.add(book1);
             }

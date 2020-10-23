@@ -12,4 +12,9 @@ public class LibError {
         this.errorMessage = errorMessage;
     }
 
+    public void setStatus(String error) {
+    }
+
+    public void setMessage(String message) {
+    }
 }
