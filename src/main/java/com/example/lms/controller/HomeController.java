@@ -6,6 +6,8 @@ import com.example.lms.model.Book;
 import com.example.lms.model.IssuedBook;
 import com.example.lms.repository.BookRepository;
 import com.example.lms.repository.IssuedBookRepository;
+import com.example.lms.service.BookService;
+import com.example.lms.service.IsdBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,10 @@ import java.util.List;
 @Controller
 public class HomeController {
     @Autowired
-    IssuedBookRepository issuedBookRepository;
-    @Autowired
-    BookRepository bookRepository;
+    IsdBookService isdBookService;
+   @Autowired
+    BookService bookService;
+
     @RequestMapping("/")
     public String home(){
         return "home";
@@ -31,7 +34,7 @@ public class HomeController {
     }
     @PostMapping("setBook")
     public String setBook(Book book){
-        bookRepository.save(book);
+        bookService.addBook(book);
         return "addBook";
     }
 
@@ -39,15 +42,15 @@ public class HomeController {
     @RequestMapping("issueBook")
     public String issueBook(@RequestParam int id, Model model) throws LibExceptions {
 
-        Book book =  bookRepository.findById(id).orElseThrow(()-> new LibExceptions("book not found"));
+        Book book =  bookService.getBook(id);
 
         IssuedBook issuedBook = new IssuedBook(book.getId(), book.getName(), book.getAuthor());
-        issuedBookRepository.save(issuedBook);
+        isdBookService.addIsdBook(issuedBook);
 
         List<IssuedBook> list = new ArrayList<>();
         list.add(issuedBook);
         model.addAttribute("list", list);
-        bookRepository.delete(book);
+        bookService.removeBook(id);
         return "viewIssuedBook";
     }
 
@@ -55,10 +58,10 @@ public class HomeController {
     @RequestMapping("returnBook")
     public String reuturnBook( int id) throws LibExceptions {
 
-        IssuedBook issuedBook =  issuedBookRepository.findById(id).orElseThrow(()-> new LibExceptions("book not found"));
+        IssuedBook issuedBook = isdBookService.getIsdBook(id);
         Book book = new Book(issuedBook.getId(), issuedBook.getIbname(), issuedBook.getIbauthor());
-        bookRepository.save(book);
-        issuedBookRepository.delete(issuedBook);
+        bookService.addBook(book);
+       isdBookService.removeIsdBook(id);
 
         return "home";
     }
@@ -67,14 +70,14 @@ public class HomeController {
 
     @GetMapping("availableBookInLibrary")
     public String avlblBook( Model model){
-        List<Book> list = bookRepository.findAll();
+        List<Book> list = bookService.allBooks();
         model.addAttribute("list", list);
         return "availableBookInLibrary";
     }
 
     @GetMapping("viewIssuedBook")
     public String  getBooks( Model model) {
-        List<IssuedBook> list= issuedBookRepository.findAll();
+        List<IssuedBook> list= isdBookService.allIsdBooks();
         model.addAttribute("list", list);
         return "viewIssuedBook";
 
@@ -90,8 +93,8 @@ public class HomeController {
 
     @RequestMapping("deleteBook")
     public String delBook(@RequestParam int id) throws LibExceptions {
-        bookRepository.findById(id).orElseThrow(() -> new LibExceptions("not found"));
-        bookRepository.deleteById(id);
+        bookService.getBook(id);
+        bookService.removeBook(id);
         return "home";
     }
     @Autowired
@@ -100,7 +103,7 @@ public class HomeController {
     @RequestMapping("search")
     public String search(String name, Model model){
 
-        List<Book> bookList = bookRepository.findAll();
+        List<Book> bookList = bookService.allBooks();
         List<Book> ans = new ArrayList<>();
 
         for(int i=0;i<bookList.size();i++){

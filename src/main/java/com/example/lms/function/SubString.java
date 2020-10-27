@@ -1,27 +1,26 @@
 package com.example.lms.function;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
-@Service
+@Configuration
 public class SubString {
     public boolean isSubstring(
             String s1, String s2)
     {
-        int M = s1.length();
-        int N = s2.length();
+        int firstString = s1.length();
+        int secondString = s2.length();
 
-        /* A loop to slide pat[] one by one */
-        for (int i = 0; i <= N - M; i++) {
+
+        for (int i = 0; i <= secondString - firstString; i++) {
             int j;
 
-            /* For current index i, check for
-            pattern match */
-            for (j = 0; j < M; j++)
+            for (j = 0; j < firstString; j++)
                 if (s2.charAt(i + j)
                         != s1.charAt(j))
                     break;
 
-            if (j == M)
+            if (j == firstString)
                 return true;
         }
 
