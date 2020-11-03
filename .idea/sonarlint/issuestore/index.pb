@@ -13,3 +13,11 @@ Jsrc/test/java/com/example/lms/LibraryManagementSystemApplicationTests.java,2/b
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 f
 6src/main/java/com/example/lms/exceptions/LibError.java,5/b/5b627770fd6642645b8c046ec91f99be9d8e65be
+f
+6src/main/java/com/example/lms/service/BookService.java,3/4/3468759ed4ea7a30c000de82c199443af968ccee
+i
+9src/main/java/com/example/lms/service/IsdBookService.java,a/d/ad9d22972865aa465dedc2e435e839f5753af625
+]
+-src/main/java/com/example/lms/model/Book.java,c/e/ce8c4384dc822698143d7382795c6e0e38c8bb5d
+c
+3src/test/java/com/example/lms/IsdBookSrvceTest.java,4/d/4d2959d7f399607b50e3e7c711044f98271cc880

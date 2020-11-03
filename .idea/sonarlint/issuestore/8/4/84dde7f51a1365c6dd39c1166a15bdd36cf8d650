@@ -1,5 +1,5 @@
 
-[
-java:S4684!"@Replace this persistent entity with a simple POJO or DTO object.(Åêäıÿÿÿÿ
-E
-java:S2201]"/The return value of "orElseThrow" must be used.(ñ—æÓ
+c
+java:S1128"FRemove this unused import 'com.example.lms.repository.BookRepository'.(—ˆ¦ñ8ùÎëÖ.
+i
+java:S1128"LRemove this unused import 'com.example.lms.repository.IssuedBookRepository'.(¡§Ú¾8ùÎëÖ.
