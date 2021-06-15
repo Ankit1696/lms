@@ -1,47 +1,64 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="main.css">
+    <style>
+        body{
+            background-color:black;
+
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            margin: 0px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+        }
+        thead{
+            background-color:green;
+            color: white;
+        }
+
+        tbody{
+            color: white;
+        }
+
+    </style>
+    <title>Home</title>
 </head>
 <body >
-
 <div class="container">
-    <div class="row">
-        <table class="table table-responsive table-striped">
-            <thead data-th-bgcolor="green">
-            <h6 style="color:#ac2925">Return book/books within 7 days</h6>
-            <tr>
-                <th>Book id</th>
-                <th>Book Name</th>
-                <th>Author Name</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="list:${list}">
-
-                <td th:text="${list.id}"></td>
-                <td th:text="${list.ibname}"></td>
-                <td th:text="${list.ibauthor}"></td>
 
 
 
-            </tr>
-            </tbody>
+    <table >
+        <thead>
+        <tr>
+            <th>Book id</th>
+            <th>Book Name</th>
+            <th>Author Name</th>
 
+        </tr>
+        </thead>
 
-        </table>
-    </div>
+        <tbody>
+        <tr  th:each="list:${list}">
+
+            <td th:text="${list.id}"></td>
+            <td th:text="${list.ibname}"></td>
+            <td th:text="${list.ibauthor}"></td>
+        </tr>
+        </tbody>
+    </table>
     <hr>
-    <a href="/">Home</a><br><br>
-
-
+    <a type="button" style="text-align: end" href="/"><b><h4>Home</h4></b></a>
+</div>
 </div>
 
 
