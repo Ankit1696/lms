@@ -1,16 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .headerStyle{
+            color: #4cae4c;
+
+        }
+        .ab{
+            color: skyblue;
+            text-align: right;
+            font-family: Arial;
+        }
+
+        .col-mid-12{
+            color: white;
+            animation: alternate;
+        }
+
+        .avatar{
+            vertical-align: middle;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        #img {
+            position: relative;
+        }
+        #img img {
+            position: absolute;
+            top: 0px;
+            right: -180px;
+        }
+
+
+    </style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>lms</title>
 </head>
-<body>
-Remove_Book
-<form action="/deleteBook", method="post">
+<body style="background-color: black" >
 
-    Id: <input type="text" name="id", >
 
-    <input type="submit">
+
+<div style="margin: 20px" class="container" >
+
+    <div id="img">
+
+        <img src="../static/images/ankit.jpg" th:src="@{images/ankit.jpg}" alt="Avatar" class="avatar" >
+    </div>
+
+
+    <div class="headerStyle"> <h2><b><i>Library Management System</i></b></h2></div>
+    <div class="ab">
+        <h6>ankit bishwas </h6>
+    </div>
+
+
+
+    <hr>
+
+    <div class="col-mid-12" >
+        <form  action="/deleteBook" method="post">
+            <label><b>Remove Book from lms</b></label><br>
+            <input type="text" placeholder="enter book id" name="id" >
+            <input type="submit" style="background: #5bc0de">
+        </form>
+        <hr>
+        <a type="button" style="text-align: end" href="/"><b><h4>Home</h4></b></a>
+    </div>
+
+</div>
+
+
 </form>
 </body>
 </html>

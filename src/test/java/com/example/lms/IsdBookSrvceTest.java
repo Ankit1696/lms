@@ -1,8 +1,8 @@
-package com.example.lms;
-
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-public class IsdBookSrvceTest {
-
-}
+//package com.example.lms;
+//
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//public class IsdBookSrvceTest {
+//
+//}
