@@ -3,6 +3,28 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 300px;
+            background-color: orange;
+
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #555;
+            color: white;
+        }
+
+
         .headerStyle{
             color: #4cae4c;
 
@@ -60,19 +82,11 @@
     <hr>
 
     <div class="col-mid-12" >
-        <form  action="/issueBook" method="post">
-            <label><b>Purchase Book</b></label><br>
-            <input type="text" placeholder="enter book id" name="id" id="getBook">
-            <input type="submit" style="background: #5bc0de">
-        </form>
 
 
 
-        <form  action="/returnBook" method="post">
-            <label><b>Return Book</b></label><br>
-            <input type="text" placeholder="enter book id" name="id" id="returnBook">
-            <input type="submit" name="submit" style="background: #5bc0de">
-        </form>
+
+
 
         <!--Search book by name-->
         <!--<form action="/search", method="get">-->
@@ -82,23 +96,45 @@
         <!--</form>-->
 
 
-        <form  action="/search" method="post">
-            <label><b>Search Book</b></label><br>
-            <input type="text" placeholder="enter book name" name="name" id="searchBook">
-            <input type="submit" style="background: #5bc0de">
-        </form>
 
 
 
 
 
         <hr>
-        <a href="viewIssuedBook" style="color: whitesmoke">viewIssuedBook</a>
-        <hr>
-        <a href="availableBookInLibrary" style="color: whitesmoke">check available book here</a><hr>
-        <a href="addBook" style="color: whitesmoke">Add book in the library</a><hr>
-        <a href="remove" style="color: whitesmoke">Remove book from the library</a><hr>
 
+
+        <ul><li><a href="viewIssuedBook" >Issued-Book</a></li></ul>
+            <ul><li><a href="availableBookInLibrary" >Available-Book</a></li></ul>
+            <ul><li><a href="addBook"> Add </a></li></ul>
+            <ul><li><a href="remove" >Remove</a></li></ul>
+
+
+
+
+            <ul><li> <form  action="/search" method="post" style="color: black">
+                <label><b>Search Book</b></label><br>
+                <input style="color:black;" type="text" placeholder="enter book name" name="name" id="searchBook">
+                <input type="submit" style="background: #5bc0de">
+            </form>
+            </li></ul>
+        <ul><li>
+            <form  action="/issueBook" method="post" style="color: black">
+                <label><b>Purchase Book</b></label><br>
+                <input style="color: black" type="text" placeholder="enter book id" name="id" id="getBook">
+                <input type="submit" style="background: #5bc0de">
+            </form>
+
+        </li></ul>
+
+        <ul><li>
+            <form  action="/returnBook" method="post" style="color: black">
+                <label><b>Return Book</b></label><br>
+                <input style="color: black" type="text" placeholder="enter book id" name="id" id="returnBook">
+                <input type="submit" name="submit" style="background: #5bc0de">
+            </form>
+
+        </li></ul>
 
     </div>
 
